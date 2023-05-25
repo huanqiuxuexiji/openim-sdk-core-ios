@@ -195,7 +195,8 @@ func (u *WsConn) ReConn(operationID string) (error, bool, bool) {
 	log.Info(operationID, "ws connect begin, dail: ", url)
 	var header http.Header
 	if u.IsCompression {
-		header = http.Header{"compression": []string{"gzip"}}
+		url += fmt.Sprintf("&compression=%s", "gzip")
+
 	}
 	//conn, httpResp, err := u.websocket.DefaultDialer.Dial(url, header)
 	httpResp, err := u.conn.Dial(url, header)
